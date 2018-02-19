@@ -32,13 +32,21 @@ from library_management_system_downloader \
 
 logging.basicConfig(level=logging.INFO)
 
+data_directory = 'data'
+
+# =============================================================================
+# Create the data directory if it doesn't already exist
+# =============================================================================
+
+Path(data_directory).mkdir(parents=True, exist_ok=True)
+
 # =============================================================================
 # Set up a connection to (and tables within) an SQLite database:
 # =============================================================================
 
 # Initialize the database:
 sql_engine = create_engine(
-        'sqlite:///library_coverage_xml_and_fulltext_indicators.db')
+        f'sqlite:///{data_directory}/library_coverage_xml_and_fulltext_indicators.db')
 
 
 # From the sqlalchemy documentation, at
